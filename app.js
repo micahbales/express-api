@@ -1,17 +1,16 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+mongoose.connect('mongodb://localhost/rest_test');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  res.send("Root Directory");
-});
-
-app.get('/users/:id', function(req, res) {
-  let id = req.params.id;
-  let color = req.query.color;
-
-  res.send(`Yes? You asked for customer ${id} and passed the color ${color}.`)
+  res.send("Working");
 });
 
 app.listen(3000);
 
-console.log("Express listening on port 3000");
+console.log("API is running on port 3000");
